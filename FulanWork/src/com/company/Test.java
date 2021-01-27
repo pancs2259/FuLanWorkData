@@ -8,7 +8,7 @@ public class Test {
 
     @org.junit.Test
     public void test(){
-        String cookie = "sid=dded7f43-4c67-4090-8855-1fafcbc9fd2b; JSESSIONID=1BE6C0C05EE3015A3496925AC4722106";
+        String cookie = "sid=6818eff4-b324-43e5-b8d3-07e38794582e; JSESSIONID=387A148A0FED17D29DFE8CC445E048B2";
         FuLanDataService service = new FuLanDataService();
         BigDecimal sumOverTime = service.getSumOverTime(cookie);
         System.out.println("总加班时间(小时)："+sumOverTime);

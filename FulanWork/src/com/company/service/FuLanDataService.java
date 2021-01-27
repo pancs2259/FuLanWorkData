@@ -171,7 +171,7 @@ public class FuLanDataService {
     public static JSONArray getFuLanVacationData(String request,String cookie) {
         String url = "https://erp.fulan.com.cn/admin/vacation/search";
         try {
-            String result = doPost2(url, "UTF-8", cookie, request,"application/json;charset=UTF-8");
+            String result = doPost2(url, "UTF-8", cookie, request,"application/x-www-form-urlencoded;charset=UTF-8");
             JSONObject response = JSONObject.parseObject(result);
             if(response != null && "200".equals(response.getString("code"))){
                 JSONObject data = response.getJSONObject("data");
@@ -191,11 +191,9 @@ public class FuLanDataService {
         JSONArray objects = new JSONArray();
         try {
             int pageTotal = getVacationPageTotal(cookie);
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("page","1");
             for (int i = 1; i < pageTotal + 1; i++) {
-                jsonObject.put("page",i);
-                JSONArray jsonArray = getFuLanVacationData(jsonObject.toJSONString(), cookie);
+                String request = "page=" + i;
+                JSONArray jsonArray = getFuLanVacationData(request, cookie);
                 if(jsonArray != null){
                     objects.addAll(jsonArray);
                 }
